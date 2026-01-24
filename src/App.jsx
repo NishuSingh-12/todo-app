@@ -12,6 +12,14 @@ function App() {
     setTodos([...todos, newTodos]);
     setText("");
   }
+
+  function toggleTodo(index) {
+    setTodos(
+      todos.map((todo, i) =>
+        i === index ? { ...todo, done: !todo.done } : todo,
+      ),
+    );
+  }
   return (
     <div>
       <h1>Todo List</h1>
@@ -24,7 +32,11 @@ function App() {
       <button onClick={handleAdd}>Add</button>
       <ul>
         {todos.map((todo, index) => (
-          <li key={index}>
+          <li
+            key={index}
+            onClick={() => toggleTodo(index)}
+            style={{ cursor: "pointer" }}
+          >
             {todo.done ? "☑️" : ""}
             {todo.text}
           </li>
