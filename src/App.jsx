@@ -20,6 +20,10 @@ function App() {
       ),
     );
   }
+
+  function deleteTodo(index) {
+    setTodos(todos.filter((_, i) => i !== index));
+  }
   return (
     <div>
       <h1>Todo List</h1>
@@ -39,6 +43,15 @@ function App() {
           >
             {todo.done ? "☑️" : ""}
             {todo.text}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                deleteTodo(index);
+              }}
+              style={{ marginLeft: "10px" }}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
