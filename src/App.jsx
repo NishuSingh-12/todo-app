@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [text, setText] = useState("");
+  const [isLoaded, setIsLoaded] = useState(false);
 
   function handleAdd() {
     const trimmed = text.trim();
@@ -24,6 +25,24 @@ function App() {
   function deleteTodo(index) {
     setTodos(todos.filter((_, i) => i !== index));
   }
+
+  useEffect(() => {
+    const saved = localStorage.getItem("todos");
+    if (saved) {
+      try {
+        setTodos(JSON.parse(saved));
+      } catch {
+        localStorage.removeItem("todos");
+      }
+    }
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos, isLoaded]);
+
   return (
     <div>
       <h1>Todo List</h1>
