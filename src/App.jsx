@@ -47,12 +47,15 @@ function App() {
   }, [todos, isLoaded]);
 
   return (
-    <div>
-      <h1>Todo List</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+   
+      <div className="bg-white p-6 rounded shadow w-full max-w-md">
+        <h1 className="text-xl font-bold mb-4">Todo List</h1>
 
-      <TodoInput text={text} setText={setText} onAdd={handleAdd} />
+        <TodoInput text={text} setText={setText} onAdd={handleAdd} />
 
-      <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
+        <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
+      </div>
     </div>
   );
 }

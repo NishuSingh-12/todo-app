@@ -1,7 +1,8 @@
 import TodoItem from "./TodoItem";
 
 function TodoList({ todos, onToggle, onDelete }) {
-  if (todos.length === 0) return <p>No todos yet</p>;
+  if (todos.length === 0)
+    return <p className="text-sm text-gray-500">No todos yet</p>;
 
   return (
     <ul>
